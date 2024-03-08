@@ -1,0 +1,240 @@
+<div class="container row mx-auto">
+  <form
+    [formGroup]="routeForm"
+    (ngSubmit)="onSubmit()"
+    class="col-9 container mt-4"
+  >
+    <div class="row gap-3 container mb-2">
+      <!-- útvonal -->
+      <div class="col p-3 shadow">
+        <h3 class="mb-3">Útvonal adatok</h3>
+        <div class="row">
+          <div class="col mb-2">
+            <label for="date" class="form-label">Dátum és idő: </label>
+            <input
+              type="datetime-local"
+              formControlName="date"
+              class="form-control"
+            />
+            <small *ngIf="date?.invalid && date?.dirty" class="text-danger">
+              Dátum megadása kötelező!
+            </small>
+          </div>
+          <div class="col mb-2">
+            <label for="km" class="form-label">Megtett km</label>
+            <input
+              type="number"
+              class="form-control"
+              id="km"
+              formControlName="km"
+            />
+            <small *ngIf="km?.invalid && km?.dirty" class="text-danger">
+              Megtett km megadása kötelező!
+            </small>
+          </div>
+          <div class="mb-2">
+            <label for="partner" class="form-label">Partner neve</label>
+            <input
+              type="text"
+              class="form-control"
+              id="partner"
+              formControlName="partner"
+            />
+            <small
+              *ngIf="partner?.invalid && partner?.dirty"
+              class="text-danger"
+            >
+              Partner megadása kötelező!
+            </small>
+          </div>
+        </div>
+
+        <!-- honnan -->
+        <div class="col">
+          <h4>Honnan</h4>
+          <div class="mb-2">
+            <label for="routeFromCity" class="form-label">Település</label>
+            <input
+              type="text"
+              class="form-control"
+              id="routeFromCity"
+              formControlName="routeFromCity"
+            />
+            <small
+              *ngIf="routeFromCity?.invalid && routeFromCity?.dirty"
+              class="text-danger"
+            >
+              Település megadása kötelező!
+            </small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-2">
+            <label for="routeFromStreet" class="form-label">Utca</label>
+            <input
+              type="text"
+              class="form-control"
+              id="routeFromStreet"
+              formControlName="routeFromStreet"
+            />
+            <small
+              *ngIf="routeFromStreet?.invalid && routeFromStreet?.dirty"
+              class="text-danger"
+            >
+              Utca megadása kötelező!
+            </small>
+          </div>
+
+          <div class="col mb-2">
+            <label for="routeFromHouseNumber" class="form-label">Házszám</label>
+            <input
+              type="text"
+              class="form-control"
+              id="routeFromHouseNumber"
+              formControlName="routeFromHouseNumber"
+            />
+            <small
+              *ngIf="
+                routeFromHouseNumber?.invalid && routeFromHouseNumber?.dirty
+              "
+              class="text-danger"
+            >
+              Házszám megadása kötelező!
+            </small>
+          </div>
+        </div>
+
+        <!-- hová -->
+        <div class="col">
+          <h4>Hová</h4>
+          <div class="mb-2">
+            <label for="routeToCity" class="form-label">Település</label>
+            <input
+              type="text"
+              class="form-control"
+              id="routeToCity"
+              formControlName="routeToCity"
+            />
+            <small
+              *ngIf="routeToCity?.invalid && routeToCity?.dirty"
+              class="text-danger"
+            >
+              Település megadása kötelező!
+            </small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-2">
+            <label for="routeToStreet" class="form-label">Utca</label>
+            <input
+              type="text"
+              class="form-control"
+              id="routeToStreet"
+              formControlName="routeToStreet"
+            />
+            <small
+              *ngIf="routeToStreet?.invalid && routeToStreet?.dirty"
+              class="text-danger"
+            >
+              Utca megadása kötelező!
+            </small>
+          </div>
+
+          <div class="col mb-2">
+            <label for="routeToHouseNumber" class="form-label">Házszám</label>
+            <input
+              type="text"
+              class="form-control"
+              id="routeToHouseNumber"
+              formControlName="routeToHouseNumber"
+            />
+            <small
+              *ngIf="routeToHouseNumber?.invalid && routeToHouseNumber?.dirty"
+              class="text-danger"
+            >
+              Házszám megadása kötelező!
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- jármű -->
+      <div class="col p-3 shadow">
+        <h3 class="mb-3">Jármű Adatok</h3>
+        <div class="mb-2">
+          <label for="licencePlate" class="form-label">Rendszám</label>
+          <input
+            type="text"
+            class="form-control"
+            id="licencePlate"
+            formControlName="licencePlate"
+          />
+          <small
+            *ngIf="licencePlate?.invalid && licencePlate?.dirty"
+            class="text-danger"
+          >
+            Rendszám megadása kötelező!
+          </small>
+          <small
+            *ngIf="
+              licencePlate?.hasError('invalidLicensePlate') &&
+              licencePlate?.dirty
+            "
+            class="text-danger"
+          >
+            Nem megfelelő formátum! Elfogadott formátum: ABC-123, AA-BB-123
+          </small>
+        </div>
+        <div class="mb-2">
+          <label for="type" class="form-label">Típus</label>
+          <input
+            type="text"
+            class="form-control"
+            id="type"
+            formControlName="type"
+          />
+          <small *ngIf="type?.invalid && type?.dirty" class="text-danger">
+            Típus megadása kötelező!
+          </small>
+        </div>
+        <div class="mb-2">
+          <label for="consumption" class="form-label"
+            >Fogyasztás (l/100km)</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="consumption"
+            formControlName="consumption"
+          />
+          <small
+            *ngIf="consumption?.invalid && consumption?.dirty"
+            class="text-danger"
+          >
+            Fogyasztás megadása kötelező!
+          </small>
+        </div>
+        <div class="text-center my-5">
+          <button
+            type="submit"
+            class="btn btn-warning rounded-5 text-center mt-4"
+            [disabled]="!routeForm.valid"
+          >
+            Mentés
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="isSubmitted" class="text-center mt-3">
+      <span class="me-3">Sikeresen hozzáadva!</span>
+      <button
+        type="button"
+        class="btn btn-warning rounded-5 text-center"
+        routerLink="/routes"
+      >
+        Tovább az útvonalakhoz
+      </button>
+    </div>
+  </form>
+</div>
